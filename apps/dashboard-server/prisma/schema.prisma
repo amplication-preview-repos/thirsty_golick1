@@ -1,5 +1,5 @@
 datasource db {
-  provider = "postgresql"
+  provider = "mongodb"
   url      = env("DB_URL")
 }
 
@@ -11,7 +11,7 @@ model DataPoint {
   city       String?
   country    String?
   createdAt  DateTime @default(now())
-  id         String   @id @default(cuid())
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
   intensity  Int?
   likelihood Int?
   region     String?
@@ -26,7 +26,7 @@ model Filter {
   country   String?
   createdAt DateTime @default(now())
   endYear   Int?
-  id        String   @id @default(cuid())
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
   pest      String?
   region    String?
   sector    String?
